@@ -2,14 +2,15 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define V 5
-#define E 6
+#define V  5
+#define E 6 
 
 
 struct Edge
 {
     int src, dest, weight;
 };
+
 
 int parentUF[V];
 
@@ -27,6 +28,8 @@ void unionSet(int u, int v)
     int rootU = find(u);
     int rootV = find(v);
     parentUF[rootU] = rootV;
+}
+
 int compare(const void *a, const void *b)
 {
     return ((struct Edge *)a)->weight - ((struct Edge *)b)->weight;
@@ -38,8 +41,8 @@ void kruskalMST(struct Edge edges[])
     printf("\nKruskal's MST:\n");
     printf("Edge \tWeight\n");
 
-  
-    qsort(edges, E, sizeof(edges[0]), )
+    
+    qsort(edges, E, sizeof(edges[0]), compare);
 
   
     for (int i = 0; i < V; i++)
@@ -48,13 +51,13 @@ void kruskalMST(struct Edge edges[])
     int count = 0;
     int total = 0;
 
-  
+
     for (int i = 0; i < E && count < V - 1; i++)
     {
         int u = edges[i].src;
         int v = edges[i].dest;
 
-    
+      
         if (find(u) != find(v))
         {
             printf("%d - %d \t%d\n", u, v, edges[i].weight);
@@ -71,7 +74,7 @@ void kruskalMST(struct Edge edges[])
 int main()
 {
 
-
+  
     struct Edge edges[E] = {
         {0, 1, 2},
         {0, 2, 3},
@@ -80,7 +83,7 @@ int main()
         {2, 4, 4},
         {3, 4, 2}};
 
-  
+    
     kruskalMST(edges);
 
     return 0;
